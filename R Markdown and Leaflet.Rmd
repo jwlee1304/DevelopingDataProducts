@@ -1,0 +1,79 @@
+---
+title: "Leaflet"
+author: "LJW"
+date: "October 17, 2020"
+output:
+  html_document:
+    df_print: paged
+always_allow_html: yes
+---
+
+## Introduction
+Create a web page using R Markdown that features a map created with Leaflet.
+
+Host your webpage on either GitHub Pages, RPubs, or NeoCities.
+
+Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet. We would love to see you show off your creativity!
+
+
+## My First Map - Attactions in Singapore
+
+```{r, echo=FALSE}
+library(leaflet)
+my_map <- leaflet() %>% 
+  addTiles()
+
+```
+
+## Add the marker for Sentosa Island . 
+
+*Attactions in Singapore - Sentosa*
+
+```{r, echo=FALSE}
+library(leaflet)
+my_map <- my_map %>%
+  addMarkers(lat=1.25011, lng=103.83093, 
+             popup="Sentosa Island")
+my_map
+```
+
+## Adding Many Markers
+
+*Adding other attractions in Singapore*
+
+```{r}
+set.seed(999)
+df <- data.frame(
+  lat = c(1.25011,1.28544, 1.318707, 1.282375, 1.4043, 1.4022, 1.4029 , 1.2868 , 1.3332, 1.2893), 
+  long =c(103.83093 ,103.859590, 103.706442 , 103.864273 , 103.7930 , 103.7881 , 103.7917, 103.8545, 103.7362 , 103.8631))
+df %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers()
+```
+
+
+## Cluster the attractions
+
+```{r, echo=FALSE}
+df %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(clusterOptions = markerClusterOptions())
+```
+
+
+## Adding Icons
+
+```{r, echo=FALSE}
+sgIcon <- makeIcon(
+  iconUrl = "http://img.freeflagicons.com/thumb/speech_bubble_icon/singapore/singapore_640.png", 
+  iconWidth = 41*225/240 , iconHeight = 41, 
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+
+df %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = sgIcon)
+```
