@@ -1,0 +1,31 @@
+---
+title: "R Markdown Presentation & Plotly"
+author: "LJW"
+date: "10/18/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown Presentation & Plotly
+
+Create a web page presentation using R Markdown that features a plot created with Plotly. Host your webpage on either GitHub Pages, RPubs, or NeoCities. Your webpage must contain the date that you created the document, and it must contain a plot created with Plotly. We would love to see you show off your creativity!
+
+Using the R built-in dataset of “presidents” to plot the quarterly approval rating for the President of the United States from the first quarter of 1945 to the last quarter of 1974.
+
+```{r cars}
+
+library(plotly)
+
+summary(presidents)
+```
+
+```{r pressure, echo=FALSE}
+plot_ly(x=time(presidents), y=presidents, type="bar")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
